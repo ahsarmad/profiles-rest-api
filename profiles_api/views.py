@@ -1,5 +1,3 @@
-from curses import A_VERTICAL
-from email import message
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -24,7 +22,7 @@ class HelloApiView(APIView):
         an_apiview = [
             'Uses HTTP methods as function (get, post, patch, put, delete)',
             'Is similar to a traditional Django View',
-            'Gives you the most control over your application logic',
+            'Gives you the most control over you application logic',
             'Is mapped manually to URLs',
         ]
 
@@ -58,14 +56,13 @@ class HelloApiView(APIView):
 
 
 class HelloViewSet(viewsets.ViewSet):
-    """Test API Viewset"""
+    """Test API ViewSet"""
     serializer_class = serializers.HelloSerializer
 
     def list(self, request):
         """Return a hello message"""
-
         a_viewset = [
-            'Uses actions (list, create, retrieve, update, partial_update)',
+            'Uses actions (list, create,retrieve, update, partial_update)',
             'Automatically maps to URLs using Routers',
             'Provides more functionality with less code',
         ]
@@ -87,7 +84,7 @@ class HelloViewSet(viewsets.ViewSet):
             )
 
     def retrieve(self, request, pk=None):
-        """Handle getting an object by it's ID"""
+        """Handle getting an object by its ID"""
         return Response({'http_method': 'GET'})
 
     def update(self, request, pk=None):
@@ -99,7 +96,7 @@ class HelloViewSet(viewsets.ViewSet):
         return Response({'http_method': 'PATCH'})
 
     def destroy(self, request, pk=None):
-        """Removing an object"""
+        """Handle removing an object"""
         return Response({'http_method': 'DELETE'})
 
 
@@ -107,10 +104,10 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     """Handle creating and updating profiles"""
     serializer_class = serializers.UserProfileSerializer
     queryset = models.UserProfile.objects.all()
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (permissions.UpdateOwnProfile, )
-    filter_backends = (filters.SearchFilter, )
-    search_fields = ('name', 'email', )
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'email',)
 
 
 class UserLoginApiView(ObtainAuthToken):
@@ -119,8 +116,8 @@ class UserLoginApiView(ObtainAuthToken):
 
 
 class UserProfileFeedViewSet(viewsets.ModelViewSet):
-    """Handles creating, reading, and updating profile feed items"""
-    authentication_classes = (TokenAuthentication, )
+    """Handles creating, reading and updating profile feed items"""
+    authentication_classes = (TokenAuthentication,)
     serializer_class = serializers.ProfileFeedItemSerializer
     queryset = models.ProfileFeedItem.objects.all()
     permission_classes = (permissions.UpdateOwnStatus, IsAuthenticated)

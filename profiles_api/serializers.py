@@ -4,8 +4,8 @@ from profiles_api import models
 
 
 class HelloSerializer(serializers.Serializer):
-    """Serializer a name field for testing our APIView"""
-    name = serializers.CharField(max_length=15)
+    """Serializes a name field for testing our APIView"""
+    name = serializers.CharField(max_length=10)
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         user = models.UserProfile.objects.create_user(
             email=validated_data['email'],
             name=validated_data['name'],
-            password=validated_data['password'],
+            password=validated_data['password']
         )
 
         return user
@@ -41,12 +41,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class ProfileFeedItemSerializer(serializers.ModelSerializer):
-    """Serializes profile feed item"""
+    """Serializes profile feed items"""
+
     class Meta:
         model = models.ProfileFeedItem
-        fields = ('id', 'user_profile', 'status_text', 'created_on',)
-        extra_kwargs = {
-            'user_profile': {
-                'read_only': True
-            }
-        }
+        fields = ('id', 'user_profile', 'status_text', 'created_on')
+        extra_kwargs = {'user_profile': {'read_only': True}}
