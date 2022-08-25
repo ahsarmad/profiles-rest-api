@@ -1,4 +1,4 @@
-# Profiles REST API
+# Profiles REST Api
 
 A REST API that supports the following:
 
