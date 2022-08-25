@@ -1,6 +1,6 @@
 # Profiles REST Api
 
-A REST API that supports the following:
+A REST Api that supports the following:
 
 Creating new profiles.  
 Logging in with a profile.  
